@@ -16,4 +16,3 @@ services:
     plan: free
     ports:
       - 80
-    dependsOn:
