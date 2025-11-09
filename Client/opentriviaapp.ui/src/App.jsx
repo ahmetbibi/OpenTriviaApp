@@ -8,7 +8,7 @@ function App() {
     const [result, setResult] = useState(null)
 
     useEffect(() => {
-        axios.get('http://localhost:5000/trivia/questions')
+        axios.get(`${import.meta.env.API_URL}/trivia/questions`)
             .then(res => setQuestions(res.data))
             .catch(err => console.error(err))
     }, [])
@@ -22,7 +22,7 @@ function App() {
             id,
             selectedAnswer: answer
         }))
-        axios.post('http://localhost:5000/trivia/checkanswers', payload)
+        axios.post(`${import.meta.env.API_URL}/trivia/checkanswers`, payload)
             .then(res => setResult(res.data))
             .catch(err => console.error(err))
     }
