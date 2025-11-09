@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: opentrivia-api
+    env: docker
+    dockerfilePath: Server/OpenTriviaApp.API/Dockerfile
+    autoDeploy: true
+    plan: free
+    ports:
+      - 5000
+
+  - type: web
+    name: opentrivia-client
+    env: docker
+    dockerfilePath: Client/opentriviaapp.ui/Dockerfile
+    autoDeploy: true
+    plan: free
+    ports:
+      - 80
+    dependsOn:
