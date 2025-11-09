@@ -5,6 +5,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:5000
+
 #EXPOSE 8081
 
 
@@ -13,8 +15,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 #COPY ["OpenTriviaApp.API.csproj", "."]
-COPY OpenTriviaApp.API.csproj ./
+#COPY OpenTriviaApp.API.csproj ./
+COPY . .
 RUN dotnet restore "./OpenTriviaApp.API.csproj"
+RUN dotnet build "OpenTriviaApp.API.csproj" -c Release -o /app/build
+
 COPY . .
 #WORKDIR "/src/Server/OpenTriviaApp.API"
 RUN dotnet build "./OpenTriviaApp.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
