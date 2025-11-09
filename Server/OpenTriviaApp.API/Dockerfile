@@ -4,18 +4,18 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5000
+#EXPOSE 8081
 
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Server/OpenTriviaApp.API/OpenTriviaApp.API.csproj", "Server/OpenTriviaApp.API/"]
-RUN dotnet restore "./Server/OpenTriviaApp.API/OpenTriviaApp.API.csproj"
+COPY ["OpenTriviaApp.API.csproj", "."]
+RUN dotnet restore "./OpenTriviaApp.API.csproj"
 COPY . .
-WORKDIR "/src/Server/OpenTriviaApp.API"
+#WORKDIR "/src/Server/OpenTriviaApp.API"
 RUN dotnet build "./OpenTriviaApp.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
@@ -27,4 +27,5 @@ RUN dotnet publish "./OpenTriviaApp.API.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS=http://+:5000
 ENTRYPOINT ["dotnet", "OpenTriviaApp.API.dll"]

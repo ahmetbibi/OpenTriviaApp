@@ -1,0 +1,24 @@
+services:
+  server:
+    build:
+      context: ./Server/OpenTriviaApp.API
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+    networks:
+      - trivia-network
+
+  client:
+    build:
+      context: ./Client/opentriviaapp.ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    networks:
+      - trivia-network
+
+networks:
+  trivia-network:
+    driver: bridge

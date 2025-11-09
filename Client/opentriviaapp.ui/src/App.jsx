@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import Question from './components/Question';
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [questions, setQuestions] = useState([])
+    const [answers, setAnswers] = useState({})
+    const [result, setResult] = useState(null)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        axios.get('http://localhost:5000/trivia/questions')
+            .then(res => setQuestions(res.data))
+            .catch(err => console.error(err))
+    }, [])
+
+    const handleAnswer = (id, answer) => {
+        setAnswers(prev => ({ ...prev, [id]: answer }))
+    }
+
+    const handleSubmit = () => {
+        const payload = Object.entries(answers).map(([id, answer]) => ({
+            id,
+            selectedAnswer: answer
+        }))
+        axios.post('http://localhost:5000/trivia/checkanswers', payload)
+            .then(res => setResult(res.data))
+            .catch(err => console.error(err))
+    }
+
+    return (
+        <div className="container mt-5">
+            <h1 className="mb-4">Trivia App</h1>
+            {questions.map(q => (
+                <Question key={q.id} question={q} onAnswer={handleAnswer} />
+            ))}
+            <button className="btn btn-primary mt-3" onClick={handleSubmit}>Submit Answers</button>
+            {result && (
+                <div className="alert alert-info mt-3">
+                    You got {result.correctCount} out of {questions.length} correct.
+                </div>
+            )}
+        </div>
+    )
 }
 
 export default App
