@@ -4,7 +4,7 @@ function Question({ question, onAnswer }) {
     return (
         <div className="card mb-3">
             <div className="card-body">
-                <h5 className="card-title">{question.question}</h5>
+                <h5 className="card-title" dangerouslySetInnerHTML={{ __html: question.question }}></h5>
                 {question.options.map((opt, idx) => (
                     <div className="form-check" key={idx}>
                         <input
@@ -14,7 +14,7 @@ function Question({ question, onAnswer }) {
                             value={opt}
                             onChange={() => onAnswer(question.id, opt)}
                         />
-                        <label className="form-check-label">{opt}</label>
+                        <label className="form-check-label" dangerouslySetInnerHTML={{ __html: opt }}></label>
                     </div>
                 ))}
             </div>
