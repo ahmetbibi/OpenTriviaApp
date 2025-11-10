@@ -7,7 +7,7 @@ ENV ASPNETCORE_URLS=http://+:5000
 # Build image
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY . .  # Copies everything from the current context
+COPY . .
 RUN dotnet restore "OpenTriviaApp.API.csproj"
 RUN dotnet build "OpenTriviaApp.API.csproj" -c Release -o /app/build
 
