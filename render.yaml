@@ -3,6 +3,7 @@ services:
     name: opentrivia-api
     env: docker
     dockerfilePath: Server/OpenTriviaApp.API/Dockerfile
+    dockerContext: Server/OpenTriviaApp.API
     autoDeploy: true
     plan: free
 
@@ -10,5 +11,6 @@ services:
     name: opentrivia-client
     env: docker
     dockerfilePath: Client/opentriviaapp.ui/Dockerfile
+    dockerContext: Client/opentriviaapp.ui
     autoDeploy: true
     plan: free
