@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{02EA68
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{F520D4E2-939D-41B0-9AD7-D286BAA09592}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTriviaApp.Tests", "Server\OpenTriviaApp.Tests\OpenTriviaApp.Tests.csproj", "{D55E0F9C-BAA2-4322-A0B8-B4BF74F19793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{A8132C47-7F38-4ADB-E55E-33AD8DE1AF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8132C47-7F38-4ADB-E55E-33AD8DE1AF68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8132C47-7F38-4ADB-E55E-33AD8DE1AF68}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D55E0F9C-BAA2-4322-A0B8-B4BF74F19793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55E0F9C-BAA2-4322-A0B8-B4BF74F19793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55E0F9C-BAA2-4322-A0B8-B4BF74F19793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55E0F9C-BAA2-4322-A0B8-B4BF74F19793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E9211C94-8B84-4D31-9BD1-092AA6551D43} = {F520D4E2-939D-41B0-9AD7-D286BAA09592}
 		{A8132C47-7F38-4ADB-E55E-33AD8DE1AF68} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D55E0F9C-BAA2-4322-A0B8-B4BF74F19793} = {F520D4E2-939D-41B0-9AD7-D286BAA09592}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EB89DCC-7288-465D-9274-83D6C38EF7EC}

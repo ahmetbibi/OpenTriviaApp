@@ -22,6 +22,7 @@ function App() {
             id,
             selectedAnswer: answer
         }))
+
         axios.post(`${import.meta.env.VITE_API_URL}/trivia/checkanswers`, payload)
             .then(res => setResult(res.data))
             .catch(err => console.error(err))
@@ -33,10 +34,17 @@ function App() {
             {questions.map(q => (
                 <Question key={q.id} question={q} onAnswer={handleAnswer} />
             ))}
+
             <button className="btn btn-primary mt-3" onClick={handleSubmit}>Submit Answers</button>
-            {result && (
+
+            {Array.isArray(result) && (
                 <div className="alert alert-info mt-3">
-                    You got {result.correctCount} out of {questions.length} correct.
+                    You got {result.filter(r => r === 'Correct').length} out of {questions.length} correct.
+                </div>
+            )}
+            {!Array.isArray(result) && result && (
+                <div className="alert alert-warning mt-3">
+                    Unable to calculate results. Please try again.
                 </div>
             )}
         </div>
