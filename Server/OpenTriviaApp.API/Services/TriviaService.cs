@@ -4,7 +4,7 @@ using OpenTriviaApp.API.Models;
 
 namespace OpenTriviaApp.API.Services
 {
-    public class TriviaService
+    public class TriviaService : ITriviaService
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private static readonly Dictionary<string, string> correctAnswers = [];

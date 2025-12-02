@@ -6,9 +6,9 @@ namespace OpenTriviaApp.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TriviaController(TriviaService service) : ControllerBase
+    public class TriviaController(ITriviaService service) : ControllerBase
     {
-        private readonly TriviaService _service = service;
+        private readonly ITriviaService _service = service;
 
         [HttpGet("questions")]
         public async Task<IActionResult> GetQuestions()

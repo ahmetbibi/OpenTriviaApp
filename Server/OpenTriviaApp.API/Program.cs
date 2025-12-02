@@ -1,3 +1,5 @@
+using OpenTriviaApp.API.Services;
+
 namespace OpenTriviaApp.API
 {
     public class Program
@@ -21,7 +23,7 @@ namespace OpenTriviaApp.API
 
             builder.Services.AddControllers();
 
-            builder.Services.AddSingleton<OpenTriviaApp.API.Services.TriviaService>();
+            builder.Services.AddScoped<ITriviaService, TriviaService>();
 
             var app = builder.Build();
 
